@@ -3,9 +3,10 @@ import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import App from '../App';
 import SignInContainer from '../containers/signInContainer';
 import SignUpContainer from '../containers/signUpContainer';
+import { firebaseApp } from '../config/firebase';
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class index extends Component {
 
@@ -28,15 +29,15 @@ class index extends Component {
             })
         }
     }
+
     render() {
-        const token1 = localStorage.getItem('token');
         const { errorSignup, successSignUp, token } = this.state;
         return (
             <div>
                 <Router>
                     <div>
                         <Route exact path="/" render={() => (
-                            token === null || token1 === null? (
+                            token === null ? (
                                 <SignInContainer />
                             ) : (
                                     <Redirect to="/home" />

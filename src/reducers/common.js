@@ -17,7 +17,6 @@ export default function (state = initialState, action) {
                 errMessage
             }
             return initialState;
-            break;
         case EVENT_SUCCESS:
             const { success, successMessage } = action;
             initialState = {
@@ -25,14 +24,13 @@ export default function (state = initialState, action) {
                 successMessage
             }
             return initialState;
-            break;
         case GET_TOKEN:
             const { token } = action;
             initialState = {
                 token
             }
             return initialState;
-            break;
+        default:
+            return state;
     }
-    return state;
 }

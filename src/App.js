@@ -48,11 +48,6 @@ class App extends Component {
       </div>
     )
   }
-
-  componentWillMount(){
-    const token = localStorage.getItem('token');
-    console.log(token);
-  }
   render() {
     
     const title = moment().format("YYYY-MM-DD HH:mm");
