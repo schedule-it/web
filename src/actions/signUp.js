@@ -1,7 +1,9 @@
 import { SIGNED_UP } from './types';
 import { firebaseApp } from '../config/firebase';
+import { eventFailed, eventSuccess } from './common'
 
 export const signUp = (email, password) => {
+
     return dispatch => {
         dispatch({
             type: SIGNED_UP
@@ -9,10 +11,11 @@ export const signUp = (email, password) => {
 
         return firebaseApp.auth().createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                console.log('result', result);
+                dispatch(eventSuccess(true, 'success sign up'));
             })
-            .catch(error => {
-                console.log('error', error);
+            .catch((err) => {
+                // console.log(err);
+                dispatch(eventFailed(true, err));
             })
     }
 }

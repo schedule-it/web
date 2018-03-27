@@ -8,7 +8,7 @@ import store from './store'
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-    <Provider>
+    <Provider store={store()}>
         <Routes />
     </Provider>,
     document.getElementById('root'));

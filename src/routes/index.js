@@ -1,22 +1,70 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import App from '../App';
-import Login from '../components/Login';
-import SignUp from '../components/SignUp';
+import SignInContainer from '../containers/signInContainer';
+import SignUpContainer from '../containers/signUpContainer';
 
-export default class index extends Component {
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
+class index extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            errorSignup: false,
+            successSignUp: false,
+            token: null
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            this.setState({
+                errorSignup: nextProps.error,
+                successSignUp: nextProps.success,
+                token: nextProps.token
+            })
+        }
+    }
     render() {
+        const token1 = localStorage.getItem('token');
+        const { errorSignup, successSignUp, token } = this.state;
         return (
             <div>
                 <Router>
                     <div>
-                        <Route exact path="/" component={App} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/signup" component={SignUp} />
+                        <Route exact path="/" render={() => (
+                            token === null || token1 === null? (
+                                <SignInContainer />
+                            ) : (
+                                    <Redirect to="/home" />
+                                )
+                        )} />
+                        <Route path="/home" component={App} />
+
+                        <Route path="/signup" render={() => (
+                            successSignUp === true ? (
+                                <Redirect to="/home" />
+                            ) : (
+                                    <SignUpContainer />
+                                )
+                        )} />
                     </div>
                 </Router>
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ common }) => {
+    return {
+        token: common.token,
+        success: common.success,
+        error: common.error,
+        errMessage: common.errMessage,
+    }
+}
+
+export default connect(mapStateToProps)(index)

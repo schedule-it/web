@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 import { signUp } from '../../actions/signUp';
-import store from '../../store';
 import './signup.css';
 
 class index extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -18,12 +17,13 @@ class index extends Component {
     }
 
     signUp() {
-        // signUp(this.state.email, this.state.password);
+        this.props.signUp(this.state.email, this.state.password)
     }
 
     render() {
         return (
             <div className="form">
+                <h1>Sign Up</h1>
                 <Input
                     type="email"
                     placeholder="Your Email"
@@ -32,11 +32,6 @@ class index extends Component {
                     type="password"
                     placeholder="Your Password"
                     onChange={event => this.setState({ password: event.target.value })}
-                    style={{ marginTop: 5 }} />
-                <Input
-                    type="password"
-                    placeholder="Confirm Password"
-                    onChange={event => this.setState({ confirmPassword: event.target.value })}
                     style={{ marginTop: 5 }} />
                 <Button
                     onClick={this.signUp}

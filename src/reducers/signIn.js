@@ -1,4 +1,4 @@
-import { SIGNED_UP } from '../actions/types';
+import { SIGNED_IN } from '../actions/types';
 
 let initialState = {
     email: '',
@@ -7,14 +7,13 @@ let initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SIGNED_UP:
+        case SIGNED_IN:
             const { email, password } = action;
-            initialState = {
+            return initialState = {
                 email,
                 password
             }
-            return initialState;
-            break;
+            break
     }
     return state;
 }
