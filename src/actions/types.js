@@ -12,3 +12,4 @@ export const GET_EMAIL = "GET_EMAIL";
 
 //schedule
 export const ADD_SCHEDULE = "ADD_SCHEDULE";
+export const GET_SCHEDULE = "GET_SCHEDULE";

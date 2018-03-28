@@ -1,4 +1,4 @@
-import { ADD_SCHEDULE } from '../actions/types';
+import { ADD_SCHEDULE, GET_SCHEDULE } from '../actions/types';
 
 let inititalState = {
     subject: '',
@@ -6,7 +6,8 @@ let inititalState = {
     description: '',
     anyDestination: false,
     from: '',
-    to: ''
+    to: '',
+    scheduleData: []
 }
 
 export default function (state = inititalState, action) {
@@ -20,6 +21,11 @@ export default function (state = inititalState, action) {
                 anyDestination,
                 from,
                 to
+            }
+        case GET_SCHEDULE:
+            const { scheduleData } = action;
+            return inititalState = {
+                scheduleData
             }
         default:
             return state;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, DatePicker, Card, Button, Switch } from 'antd';
-import { addSchedule } from '../../actions/schedule';
+import { addSchedule, getAllSchedule } from '../../actions/schedule';
 import * as moment from 'moment';
 import '../../App.css';
 const { TextArea } = Input;
@@ -23,9 +23,8 @@ class index extends Component {
     this.switchChange = this.switchChange.bind(this);
   }
   onChange(dateAndTime) {
-    const dt = moment(dateAndTime).format('x');
+    const dt = moment(dateAndTime).format('DD-MM-YYYY HH:mm');
     this.setState({ dateAndTime: dt })
-    console.log(dt);
   }
   switchChange(x) {
     this.setState({ anyDestination: x })
@@ -48,14 +47,23 @@ class index extends Component {
       </div>
     )
   }
+
+  renderSchedule() {
+    this.props.scheduleData.map((s, key) => {
+      return (
+        <div key={key}>
+          {s.subject}
+        </div>
+      )
+    })
+  }
+
   render() {
-    console.log(this.props)
     const mail = localStorage.getItem('email');
     const title = moment().format("YYYY-MM-DD HH:mm");
     return (
       <div className="App" style={{ padding: '2em' }}>
         <h1 className="App-intro">
-          It's just prototype, don't expect too much :) {this.state.email}
         </h1>
         <Input
           placeholder="Subject"
@@ -89,13 +97,6 @@ class index extends Component {
           type="primary"
           onClick={this.submit}>Submit</Button>
 
-        <Card title={`Your Schedule on ${title}`}>
-          Subject: Hangout<br />
-          Date and Time: {moment().format("YYYY-MM-DD HH:mm")}<br />
-          Description: Hangout with ma hunny bunny *kiss**kiss**hug**hug*<br />
-          Destination: <a href="https://www.google.com/maps/dir/?api=1&origin=mercu+buana+jakarta&destination=pondok+indah+mall&travelmode=driving"
-            target="_blank" rel="noopener noreferrer">From Mercu Buana Jakarta to Pondok Indah Mall</a>
-        </Card>
       </div>
 
     );

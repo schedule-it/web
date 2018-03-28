@@ -1,4 +1,4 @@
-import { ADD_SCHEDULE } from './types';
+import { ADD_SCHEDULE, GET_SCHEDULE } from './types';
 import { firebaseApp } from '../config/firebase';
 
 function splitStringToPlus(string) {
@@ -14,10 +14,16 @@ export const addSchedule = (subject, dateAndTime, description, anyDestination, f
         })
         const origin = splitStringToPlus(from);
         const destination = splitStringToPlus(to);
-        firebaseApp.database().ref('schedule/b@mail.com')
+        firebaseApp.database().ref('schedule')
             .push({ subject, dateAndTime, description, anyDestination, origin, destination })
-            .then((result) => {
-                console.log(result);
-            })
+    }
+}
+
+export const getAllSchedule = (scheduleData) => {
+    return dispatch => {
+        dispatch({
+            type: GET_SCHEDULE,
+            scheduleData: scheduleData
+        })
     }
 }
