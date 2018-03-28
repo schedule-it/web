@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { firebaseApp } from '../config/firebase';
 
-import { addSchedule, getAllSchedule } from '../actions/schedule';
+import { addSchedule, getAllSchedule, completeSchedule, getAllCompletedSchedule } from '../actions/schedule';
 import AddSchedule from '../components/AddSchedule';
-import ViewSchedule from '../components/ViewSchedule'
+import ViewSchedule from '../components/ViewSchedule';
+import CompletedSchedule from '../components/CompletedSchedule';
 
 class AddScheduleContainer extends Component {
     constructor(props) {
@@ -37,6 +38,30 @@ class AddScheduleContainer extends Component {
             })
             this.props.getAllSchedule(schedules);
         })
+
+        firebaseApp.database().ref('completedSchedule').on("value", snap => {
+            let completedSchedules = [];
+            snap.forEach(completedSchedule => {
+                const { subject,
+                    dateAndTime,
+                    description,
+                    anyDestination,
+                    origin,
+                    destination } = completedSchedule.val()
+                const serverKey = completedSchedule.key;
+                completedSchedules.push({
+                    serverKey,
+                    subject,
+                    dateAndTime,
+                    description,
+                    anyDestination,
+                    origin,
+                    destination
+                })
+
+            })
+            this.props.getAllCompletedSchedule(completedSchedules);
+        })
     }
 
     render() {
@@ -47,7 +72,7 @@ class AddScheduleContainer extends Component {
                 <div>
                     <Row>
                         <Col span={12}><ViewSchedule {...this.props} /></Col>
-                        <Col span={12}>col-12</Col>
+                        <Col span={12}><CompletedSchedule {...this.props} /></Col>
                     </Row>
                 </div>
             </div>
@@ -58,13 +83,8 @@ class AddScheduleContainer extends Component {
 
 const mapStateToProps = ({ schedule }) => {
     return {
-        subject: schedule.subject,
-        dateAndTime: schedule.dateAndTime,
-        description: schedule.description,
-        anyDestination: schedule.anyDestination,
-        from: schedule.from,
-        to: schedule.to,
-        scheduleData: schedule.scheduleData
+        scheduleData: schedule.scheduleData,
+        completedScheduleData: schedule.completedScheduleData
     }
 }
 
@@ -72,6 +92,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addSchedule: bindActionCreators(addSchedule, dispatch),
         getAllSchedule: bindActionCreators(getAllSchedule, dispatch),
+        completeSchedule: bindActionCreators(completeSchedule, dispatch),
+        getAllCompletedSchedule: bindActionCreators(getAllCompletedSchedule, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddScheduleContainer)

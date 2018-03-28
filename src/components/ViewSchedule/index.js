@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'antd';
-import { textSplit } from '../../helper/'
-import * as moment from 'moment';
-
+import ListSchedule from '../ListSchedule';
 
 export default class index extends Component {
 
@@ -17,14 +14,7 @@ export default class index extends Component {
                 {
                     scheduleData.map((schedule) => {
                         return (
-                            <div key={schedule.serverKey}>
-                                <Card title={schedule.subject} style={{marginTop: 10}}>
-                                    Date and Time: {schedule.dateAndTime}<br />
-                                    description: {schedule.description}<br />
-                                    Destination: <a href={`https://www.google.com/maps/dir/?api=1&origin=${schedule.origin}
-                                    &destination=${schedule.destination}&travelmode=driving`} target="_blank">from {textSplit(schedule.origin)} to {textSplit(schedule.destination)}</a>
-                                </Card>
-                            </div>
+                            <ListSchedule key={schedule.serverKey} list={schedule} />
                         )
                     })
                 }
