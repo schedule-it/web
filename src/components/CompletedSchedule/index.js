@@ -11,7 +11,7 @@ export default class index extends Component {
         this.deleteAll = this.deleteAll.bind(this);
     }
 
-    deleteAll(){
+    deleteAll() {
         deleteAllCompletedSchedule();
     }
 

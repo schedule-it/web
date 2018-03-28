@@ -11,6 +11,7 @@ export default class index extends Component {
         const scheduleData = this.props.scheduleData;
         return (
             <div>
+                
                 {
                     scheduleData.map((schedule) => {
                         return (
