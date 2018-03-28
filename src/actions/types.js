@@ -6,5 +6,9 @@ export const SIGNED_IN = "SIGNED_IN";
 export const EVENT_FAILED = "EVENT_FAILED";
 export const EVENT_SUCCESS = "EVENT_SUCCESS";
 
-//token
+//local storage
 export const GET_TOKEN = "GET_TOKEN";
+export const GET_EMAIL = "GET_EMAIL";
+
+//schedule
+export const ADD_SCHEDULE = "ADD_SCHEDULE";

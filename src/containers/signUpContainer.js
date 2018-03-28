@@ -22,6 +22,7 @@ const mapStateToProps = ({ signUp }) => {
     return {
         email: signUp.email,
         password: signUp.password,
+        username: signUp.username
     }
 }
 

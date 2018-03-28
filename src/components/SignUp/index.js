@@ -17,7 +17,7 @@ class index extends Component {
     }
 
     signUp() {
-        this.props.signUp(this.state.email, this.state.password)
+        this.props.signUp(this.state.email, this.state.password, 'bambang')
     }
 
     render() {

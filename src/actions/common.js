@@ -1,4 +1,4 @@
-import { EVENT_FAILED, EVENT_SUCCESS, GET_TOKEN } from './types';
+import { EVENT_FAILED, EVENT_SUCCESS, GET_TOKEN, GET_EMAIL } from './types';
 
 
 export function eventFailed(error, errMessage) {
@@ -21,5 +21,12 @@ export function getToken(token) {
     return {
         type: GET_TOKEN,
         token: token
+    }
+}
+
+export function getEmail(email) {
+    return {
+        type: GET_EMAIL,
+        token: email
     }
 }

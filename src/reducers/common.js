@@ -1,7 +1,8 @@
-import { EVENT_FAILED, EVENT_SUCCESS, GET_TOKEN } from '../actions/types';
+import { EVENT_FAILED, EVENT_SUCCESS, GET_TOKEN, GET_EMAIL } from '../actions/types';
 
 let initialState = {
     token: '',
+    email: '',
     success: false,
     error: false,
     successMessage: '',
@@ -28,6 +29,12 @@ export default function (state = initialState, action) {
             const { token } = action;
             initialState = {
                 token
+            }
+            return initialState;
+        case GET_EMAIL:
+            const { email } = action;
+            initialState = {
+                email
             }
             return initialState;
         default:
