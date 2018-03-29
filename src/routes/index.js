@@ -51,7 +51,13 @@ class index extends Component {
                                 )
                         )} />
                         <Route path="/home" component={App} />
-                        <Route path="/signup" component={SignUpContainer} />
+                        <Route path="/signup" render={() => (
+                            token === null ? (
+                                <SignUpContainer />
+                            ) : (
+                                    <Redirect to="/home" />
+                                )
+                        )} />
                     </div>
                 </Router>
             </div>

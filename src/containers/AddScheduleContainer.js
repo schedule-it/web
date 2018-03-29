@@ -12,79 +12,69 @@ import CompletedSchedule from '../components/CompletedSchedule';
 class AddScheduleContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: ''
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.username !== nextProps.username) {
+            this.getSchedule(nextProps.username);
+            this.getCompletedSchedule(nextProps.username);
+        } 
+        
+    }
+
+    getSchedule(username) {
+
+        return this.props.getAllSchedule(username)
+    }
+
+    getCompletedSchedule(username){
+        return this.props.getAllCompletedSchedule(username)
+    }
+
+    getAllSchdule() {
+        if (this.state.username !== undefined) {
+
+            const userPath = this.state.username;
+            console.log(this.state.username, "userpath")
+
+        }
     }
 
     componentDidMount() {
-        firebaseApp.database().ref('schedule').on("value", snap => {
-            let schedules = [];
-            snap.forEach(schedule => {
-                const { subject,
-                    dateAndTime,
-                    description,
-                    anyDestination,
-                    origin,
-                    destination } = schedule.val()
-                const serverKey = schedule.key;
-                schedules.push({
-                    serverKey,
-                    subject,
-                    dateAndTime,
-                    description,
-                    anyDestination,
-                    origin,
-                    destination
-                })
-
-            })
-            this.props.getAllSchedule(schedules);
-        })
-
-        firebaseApp.database().ref('completedSchedule').on("value", snap => {
-            let completedSchedules = [];
-            snap.forEach(completedSchedule => {
-                const { subject,
-                    dateAndTime,
-                    description,
-                    anyDestination,
-                    origin,
-                    destination } = completedSchedule.val()
-                const serverKey = completedSchedule.key;
-                completedSchedules.push({
-                    serverKey,
-                    subject,
-                    dateAndTime,
-                    description,
-                    anyDestination,
-                    origin,
-                    destination
-                })
-
-            })
-            this.props.getAllCompletedSchedule(completedSchedules);
-        })
+        this.getSchedule();
     }
 
     render() {
-        return (
-            <div>
-                <AddSchedule {...this.props} />
+        console.log(this.props);
+        if (!this.props) {
+            return <div></div>
+        } else {
 
+            return (
                 <div>
-                    <Row>
-                        <Col span={12}><ViewSchedule {...this.props} /></Col>
-                        <Col span={12}><CompletedSchedule {...this.props} /></Col>
-                    </Row>
+                    <AddSchedule {...this.props} />
+
+                    <div>
+                        <Row>
+                            <Col span={12}><ViewSchedule {...this.props} /></Col>
+                            <Col span={12}><CompletedSchedule {...this.props} /></Col>
+                        </Row>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
 
     }
 }
 
-const mapStateToProps = ({ schedule }) => {
+const mapStateToProps = ({ schedule, common }) => {
     return {
         scheduleData: schedule.scheduleData,
-        completedScheduleData: schedule.completedScheduleData
+        completedScheduleData: schedule.completedScheduleData,
+        username: common.username
     }
 }
 

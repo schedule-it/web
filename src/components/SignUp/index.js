@@ -9,6 +9,7 @@ class index extends Component {
         super(props);
         this.state = {
             email: '',
+            username: '',
             password: '',
             confirmPassword: ''
         }
@@ -17,13 +18,17 @@ class index extends Component {
     }
 
     signUp() {
-        this.props.signUp(this.state.email, this.state.password, 'bambang')
+        this.props.signUp(this.state.email, this.state.password, this.state.username)
     }
 
     render() {
         return (
             <div className="form">
                 <h1>Sign Up</h1>
+                <Input
+                    type="text"
+                    placeholder="Your Username"
+                    onChange={event => this.setState({ username: event.target.value })} />
                 <Input
                     type="email"
                     placeholder="Your Email"

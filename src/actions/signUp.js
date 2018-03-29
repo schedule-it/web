@@ -1,6 +1,6 @@
 import { SIGNED_UP } from './types';
 import { firebaseApp } from '../config/firebase';
-import { eventFailed, eventSuccess } from './common'
+import { eventFailed, eventSuccess, getUsername } from './common'
 
 export const signUp = (email, password, username) => {
 
@@ -11,8 +11,9 @@ export const signUp = (email, password, username) => {
 
         return firebaseApp.auth().createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                dispatch(eventSuccess(true, 'success sign up'));
                 return result.updateProfile({displayName: username});
+                dispatch(eventSuccess(true, 'success sign up'));
+                dispatch(getUsername(username));
             })
             .catch((err) => {
                 // console.log(err);

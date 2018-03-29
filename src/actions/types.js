@@ -8,7 +8,7 @@ export const EVENT_SUCCESS = "EVENT_SUCCESS";
 
 //local storage
 export const GET_TOKEN = "GET_TOKEN";
-export const GET_EMAIL = "GET_EMAIL";
+export const GET_USERNAME = "GET_USERNAME";
 
 //schedule
 export const ADD_SCHEDULE = "ADD_SCHEDULE";

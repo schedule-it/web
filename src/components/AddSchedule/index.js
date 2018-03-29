@@ -12,9 +12,9 @@ class index extends Component {
     this.state = {
       subject: '',
       dateAndTime: null,
+      username: '',
       description: '',
       anyDestination: false,
-      email: localStorage.getItem('email'),
       from: '',
       to: '',
     }
@@ -22,17 +22,22 @@ class index extends Component {
     this.submit = this.submit.bind(this);
     this.switchChange = this.switchChange.bind(this);
   }
+
   onChange(dateAndTime) {
     const dt = moment(dateAndTime).format('DD-MM-YYYY HH:mm');
     this.setState({ dateAndTime: dt })
   }
+
   switchChange(x) {
     this.setState({ anyDestination: x })
   }
+
   submit() {
     const { subject, dateAndTime, description, anyDestination, email, from, to } = this.state;
-    this.props.addSchedule(subject, dateAndTime, description, anyDestination, from, to, email);
+    const { username } = this.props
+    this.props.addSchedule(subject, dateAndTime, description, anyDestination, from, to, username);
   }
+
   destination() {
     return (
       <div>

@@ -1,3 +1,7 @@
-export function textSplit(data){
-    return data.replace(/([.?*+^$[\]\\(){}|-])/g, ' ');
+export function textSplit(data) {
+    if (data === undefined) {
+        return data;
+    } else {
+        return data.replace(/([.?*+^$[\]\\(){}|-])/g, ' ');
+    }
 }

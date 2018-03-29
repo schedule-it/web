@@ -14,12 +14,13 @@ export default class index extends Component {
     }
 
     completedSchedule() {
-        const { subject, dateAndTime, description, anyDestination, origin, destination, serverKey } = this.props.list;
-        completeSchedule(subject, dateAndTime, description, anyDestination, origin, destination, serverKey)
+        const { subject, dateAndTime, description, anyDestination, origin, destination, serverKey, username } = this.props.list;
+        completeSchedule(subject, dateAndTime, description, anyDestination, origin, destination, serverKey, username)
     }
 
     render() {
         const schedule = this.props.list;
+        console.log(schedule);
         return (
             <div>
                 <Card title={schedule.subject} style={{ marginTop: 10 }}>

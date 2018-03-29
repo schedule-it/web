@@ -11,8 +11,9 @@ export default class index extends Component {
         this.deleteAll = this.deleteAll.bind(this);
     }
 
-    deleteAll(){
-        deleteAllCompletedSchedule();
+    deleteAll() {
+        const { username } = this.props;
+        deleteAllCompletedSchedule(username);
     }
 
     render() {
