@@ -34,21 +34,7 @@ class AddScheduleContainer extends Component {
         return this.props.getAllCompletedSchedule(username)
     }
 
-    getAllSchdule() {
-        if (this.state.username !== undefined) {
-
-            const userPath = this.state.username;
-            console.log(this.state.username, "userpath")
-
-        }
-    }
-
-    componentDidMount() {
-        this.getSchedule();
-    }
-
     render() {
-        console.log(this.props);
         if (!this.props) {
             return <div></div>
         } else {

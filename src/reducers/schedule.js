@@ -1,4 +1,4 @@
-import { ADD_SCHEDULE, GET_SCHEDULE, COMPLETE_SCHEDULE, GET_COMPLETED_SCHEDULE } from '../actions/types';
+import { GET_SCHEDULE, GET_COMPLETED_SCHEDULE } from '../actions/types';
 
 let inititalState = {
     scheduleData: [],

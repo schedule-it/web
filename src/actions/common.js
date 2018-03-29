@@ -5,7 +5,7 @@ export function eventFailed(error, errMessage) {
     return {
         type: EVENT_FAILED,
         error: error,
-        errMessage: errMessage.message
+        errMessage: errMessage
     }
 }
 
@@ -13,7 +13,7 @@ export function eventSuccess(success, successMessage) {
     return {
         type: EVENT_SUCCESS,
         success: success,
-        successMessage: successMessage.message
+        successMessage: successMessage
     }
 }
 

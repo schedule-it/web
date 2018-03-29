@@ -13,16 +13,22 @@ export default function (state = initialState, action) {
     switch (action.type) {
         case EVENT_FAILED:
             const { error, errMessage } = action;
-            initialState = {
-                error,
-                errMessage
+            return {
+                ...state,
+                ...{
+                    error: error,
+                    errMessage: errMessage
+                }
             }
             return initialState;
         case EVENT_SUCCESS:
             const { success, successMessage } = action;
-            initialState = {
-                success,
-                successMessage
+            return {
+                ...state,
+                ...{
+                    success: success,
+                    successMessage: successMessage
+                }
             }
             return initialState;
         case GET_TOKEN:

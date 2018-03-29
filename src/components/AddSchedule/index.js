@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Input, DatePicker, Card, Button, Switch } from 'antd';
-import { addSchedule, getAllSchedule } from '../../actions/schedule';
+import { Input, DatePicker, Button, Switch } from 'antd';
 import * as moment from 'moment';
 import '../../App.css';
 const { TextArea } = Input;
@@ -12,7 +11,6 @@ class index extends Component {
     this.state = {
       subject: '',
       dateAndTime: null,
-      username: '',
       description: '',
       anyDestination: false,
       from: '',
@@ -33,7 +31,7 @@ class index extends Component {
   }
 
   submit() {
-    const { subject, dateAndTime, description, anyDestination, email, from, to } = this.state;
+    const { subject, dateAndTime, description, anyDestination, from, to } = this.state;
     const { username } = this.props
     this.props.addSchedule(subject, dateAndTime, description, anyDestination, from, to, username);
   }
@@ -64,8 +62,6 @@ class index extends Component {
   }
 
   render() {
-    const mail = localStorage.getItem('email');
-    const title = moment().format("YYYY-MM-DD HH:mm");
     return (
       <div className="App" style={{ padding: '2em' }}>
         <h1 className="App-intro">

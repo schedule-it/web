@@ -5,19 +5,15 @@ import { eventFailed, eventSuccess, getUsername } from './common'
 export const signUp = (email, password, username) => {
 
     return dispatch => {
-        dispatch({
-            type: SIGNED_UP
-        })
-
         return firebaseApp.auth().createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                return result.updateProfile({displayName: username});
-                dispatch(eventSuccess(true, 'success sign up'));
+                dispatch(eventSuccess(true, 'Success Sign Up! Please move to Login page'));
                 dispatch(getUsername(username));
+                return result.updateProfile({ displayName: username });
             })
             .catch((err) => {
-                // console.log(err);
-                dispatch(eventFailed(true, err));
+                dispatch(eventFailed(true, err.message));
             })
     }
+
 }

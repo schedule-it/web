@@ -18,11 +18,12 @@ class SignUpContainer extends Component {
     }
 }
 
-const mapStateToProps = ({ signUp }) => {
+const mapStateToProps = ({ common }) => {
     return {
-        email: signUp.email,
-        password: signUp.password,
-        username: signUp.username
+        successMessage: common.successMessage,
+        success: common.success,
+        errMessage: common.errMessage,
+        error: common.error
     }
 }
 

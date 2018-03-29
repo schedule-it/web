@@ -1,4 +1,4 @@
-import { ADD_SCHEDULE, GET_SCHEDULE, COMPLETE_SCHEDULE, GET_COMPLETED_SCHEDULE } from './types';
+import { ADD_SCHEDULE, GET_SCHEDULE, GET_COMPLETED_SCHEDULE } from './types';
 import { firebaseApp } from '../config/firebase';
 
 function splitStringToPlus(string) {

@@ -14,8 +14,6 @@ class index extends Component {
         super(props)
 
         this.state = {
-            errorSignup: false,
-            successSignUp: false,
             token: null
         }
     }
@@ -23,28 +21,19 @@ class index extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props !== nextProps) {
             this.setState({
-                errorSignup: nextProps.error,
-                successSignUp: nextProps.success,
                 token: nextProps.token
             })
-            localStorage.setItem('token', nextProps.token)
         }
     }
 
-    componentWillMount() {
-        const token = localStorage.getItem('token');
-        this.setState({ token })
-    }
-
     render() {
-        const { errorSignup, successSignUp, token } = this.state;
-        console.log(token)
+        const { token } = this.state;
         return (
             <div>
                 <Router>
                     <div>
                         <Route exact path="/" render={() => (
-                            token === null ? (
+                            token === null || token === undefined ? (
                                 <SignInContainer />
                             ) : (
                                     <Redirect to="/home" />
@@ -52,12 +41,12 @@ class index extends Component {
                         )} />
                         <Route path="/home" component={App} />
                         <Route path="/signup" render={() => (
-                            token === null ? (
+                            token === null || token === undefined ? (
                                 <SignUpContainer />
                             ) : (
                                     <Redirect to="/home" />
                                 )
-                        )} />
+                        )}/>
                     </div>
                 </Router>
             </div>
