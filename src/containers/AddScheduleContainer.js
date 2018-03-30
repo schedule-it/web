@@ -8,6 +8,7 @@ import { addSchedule, getAllSchedule, completeSchedule, getAllCompletedSchedule 
 import AddSchedule from '../components/AddSchedule';
 import ViewSchedule from '../components/ViewSchedule';
 import CompletedSchedule from '../components/CompletedSchedule';
+import './container.css';
 
 class AddScheduleContainer extends Component {
     constructor(props) {
@@ -21,8 +22,8 @@ class AddScheduleContainer extends Component {
         if (this.props.username !== nextProps.username) {
             this.getSchedule(nextProps.username);
             this.getCompletedSchedule(nextProps.username);
-        } 
-        
+        }
+
     }
 
     getSchedule(username) {
@@ -30,7 +31,7 @@ class AddScheduleContainer extends Component {
         return this.props.getAllSchedule(username)
     }
 
-    getCompletedSchedule(username){
+    getCompletedSchedule(username) {
         return this.props.getAllCompletedSchedule(username)
     }
 
@@ -41,14 +42,25 @@ class AddScheduleContainer extends Component {
 
             return (
                 <div>
-                    <AddSchedule {...this.props} />
 
-                    <div>
-                        <Row>
-                            <Col span={12}><ViewSchedule {...this.props} /></Col>
-                            <Col span={12}><CompletedSchedule {...this.props} /></Col>
-                        </Row>
-                    </div>
+
+                    <Row>
+                        <Col span={12}>
+                            <h2>Add Your Schedule here</h2>
+                            <AddSchedule {...this.props} />
+                        </Col>
+                        <Col span={12}>
+                            <div className="scroll-screen">
+                                <h2>On Going Schedule</h2>
+                                <ViewSchedule {...this.props} />
+                            </div>
+                            <div className="scroll-screen">
+                                <h2>Completed Schedule</h2>
+                                <CompletedSchedule {...this.props} />
+                            </div>
+                        </Col>
+                    </Row>
+
                 </div>
             )
         }
