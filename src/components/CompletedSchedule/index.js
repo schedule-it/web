@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Row, Col } from 'antd';
 import { textSplit } from '../../helper';
 import { deleteAllCompletedSchedule } from '../../actions/schedule';
 
@@ -20,7 +20,13 @@ export default class index extends Component {
         const completedSchedule = this.props.completedScheduleData;
         return (
             <div>
-                <Button type="danger" onClick={this.deleteAll} >Delete All Data</Button>
+                <div style={{marginTop: '10px'}}>
+                    <Row>
+                        <Col span={24} pull={9}>
+                            <Button type="danger" onClick={this.deleteAll} >Delete All Data</Button>
+                        </Col>
+                    </Row>
+                </div>
                 {
                     completedSchedule.map((cs) => {
                         return (
