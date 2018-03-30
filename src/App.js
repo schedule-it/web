@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import AddScheduleContainer from './containers/AddScheduleContainer';
 import ViewSchedule from './components/ViewSchedule';
-import { Button } from 'antd';
+import { Button, Layout, Row, Col } from 'antd';
 import { firebaseApp } from './config/firebase';
+
+const { Header, Content } = Layout;
 
 class App extends Component {
 
@@ -15,18 +17,29 @@ class App extends Component {
   logout() {
     firebaseApp.auth().signOut();
     this.props.history.push('/');
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
     window.location.reload();
   }
 
   render() {
     return (
-      <div className="App" style={{ padding: '2em' }}>
-        <Button onClick={this.logout}>
-          Logout
-        </Button>
-        <AddScheduleContainer />
+      <div className="App">
+        <Layout>
+          <Header>
+            <Row>
+              <Col span={16} pull={6}>
+                <h2 style={{color: 'white'}}>Schedule It</h2>
+              </Col>
+              <Col span={8} push={3}>
+                <Button onClick={this.logout}>
+                  Logout
+              </Button>
+              </Col>
+            </Row>
+          </Header>
+          <Content>
+            <AddScheduleContainer />
+          </Content>
+        </Layout>
       </div>
     );
   }
