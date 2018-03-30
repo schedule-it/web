@@ -1,0 +1,6 @@
+.scroll-screen {
+    background-color: #bfbfbf;
+    width: 100%;
+    height: 600px;
+    overflow: scroll;
+}
