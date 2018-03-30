@@ -21,30 +21,30 @@ class index extends Component {
     }
 
     render() {
-        return (  
-        <div className="badan">  
-            <div className="form">
-                <h1>Sign In</h1>
-                <Input
-                    type="email"
-                    placeholder="Your Email"
-                    onChange={event => this.setState({ email: event.target.value })} />
-                <Input
-                    type="password"
-                    placeholder="Your Password"
-                    onChange={event => this.setState({ password: event.target.value })}
-                    style={{ marginTop: 5 }} />
-                <Button
-                    onClick={this.signIn}
-                    style={{ marginTop: 5 }}>
-                    Login
+        return (
+            <div className="badan">
+                <div className="form">
+                    <h1>Sign In</h1>
+                    <Input
+                        type="email"
+                        placeholder="Your Email"
+                        onChange={event => this.setState({ email: event.target.value })} />
+                    <Input
+                        type="password"
+                        placeholder="Your Password"
+                        onChange={event => this.setState({ password: event.target.value })}
+                        style={{ marginTop: 5 }} />
+                    <Button
+                        onClick={this.signIn}
+                        style={{ marginTop: 5 }}>
+                        Login
                 </Button>
 
-                <div style={{marginTop: '18px'}}>
-                    <Link to="/signup">Sign Up Instead</Link>
+                    <div style={{ marginTop: '18px' }}>
+                        <Link to="/signup">Sign Up Instead</Link>
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
