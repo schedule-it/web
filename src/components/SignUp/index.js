@@ -30,7 +30,11 @@ class index extends Component {
     render() {
         const { errMessage, error, successMessage, success } = this.props;
         return (
-            <div className="form">
+        <div className="badansign">
+            <div className="header">
+                <h3>Schedule It</h3>
+            </div>
+            <div className="form1">
                 {
                     error === true ?
                         <Alert
@@ -73,9 +77,13 @@ class index extends Component {
                 </Button>
 
                 <div style={{marginTop: '18px'}}>
-                    Have an Account? <Link to="/">Let's Login</Link>
+                    <font color="white">Have an Account?</font> <Link to="/">Let's Login</Link>
                 </div>
             </div>
+            <div className="footer">
+                <h3>Makes Your Day Better</h3>
+            </div>
+        </div>
         )
     }
 }
