@@ -21,7 +21,8 @@ class index extends Component {
     }
 
     render() {
-        return (
+        return (  
+        <div className="badan">  
             <div className="form">
                 <h1>Sign In</h1>
                 <Input
@@ -43,6 +44,7 @@ class index extends Component {
                     <Link to="/signup">Sign Up Instead</Link>
                 </div>
             </div>
+        </div>
         )
     }
 }
