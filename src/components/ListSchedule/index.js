@@ -20,14 +20,27 @@ export default class index extends Component {
 
     render() {
         const schedule = this.props.list;
-        console.log(schedule);
         return (
             <div>
                 <Card title={schedule.subject} style={{ marginTop: 10 }}>
                     Date and Time: {schedule.dateAndTime}<br />
-                    description: {schedule.description}<br />
-                    Destination: <a href={`https://www.google.com/maps/dir/?api=1&origin=${schedule.origin}
+                    Description: {schedule.description}<br />
+                    Any Destination? {
+                        schedule.anyDestination === true ?
+                            <p>Yes &#128526;</p>
+                            :
+                            <p>No &#128533;</p>
+                    }
+                    {
+                        schedule.anyDestination === true ?
+                            <div>
+                            Destination: <a href={`https://www.google.com/maps/dir/?api=1&origin=${schedule.origin}
                                     &destination=${schedule.destination}&travelmode=driving`} target="_blank">from {textSplit(schedule.origin)} to {textSplit(schedule.destination)}</a><br />
+                            </div>
+                            :
+                            <div>
+                            </div>
+                    }
                     <Button type="primary" onClick={this.completedSchedule} >Complete</Button>
 
                 </Card>

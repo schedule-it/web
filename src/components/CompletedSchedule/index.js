@@ -28,8 +28,21 @@ export default class index extends Component {
                                 <Card title={cs.subject} style={{ marginTop: 10 }} >
                                     Date and Time: {cs.dateAndTime}<br />
                                     description: {cs.description}<br />
-                                    Destination: <a href={`https://www.google.com/maps/dir/?api=1&origin=${cs.origin}
-                                    &destination=${cs.destination}&travelmode=driving`} target="_blank">from {textSplit(cs.origin)} to {textSplit(cs.destination)} </a><br />
+                                    Any Destination? {
+                                        cs.anyDestination === true ?
+                                            <p>Yes &#128526;</p>
+                                            :
+                                            <p>No &#128533;</p>
+                                    }
+                                    {
+                                        cs.anyDestination === true ?
+                                            <div>
+                                                Destination: from {textSplit(cs.origin)} to {textSplit(cs.destination)}
+                                            </div>
+                                            :
+                                            <div>
+                                            </div>
+                                    }
                                 </Card>
                             </div>
                         )
