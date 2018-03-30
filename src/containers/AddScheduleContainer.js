@@ -42,25 +42,22 @@ class AddScheduleContainer extends Component {
 
             return (
                 <div>
-
-
                     <Row>
                         <Col span={12}>
-                            <h2>Add Your Schedule here</h2>
+                            <h2 style={{ marginTop: '10px' }}>Add Your Schedule here</h2>
                             <AddSchedule {...this.props} />
                         </Col>
                         <Col span={12}>
+                            <h2 style={{ marginTop: '10px' }}>On Going Schedule</h2>
                             <div className="scroll-screen">
-                                <h2>On Going Schedule</h2>
                                 <ViewSchedule {...this.props} />
                             </div>
+                            <h2 style={{ marginTop: '30px' }}>Completed Schedule</h2>
                             <div className="scroll-screen">
-                                <h2>Completed Schedule</h2>
                                 <CompletedSchedule {...this.props} />
                             </div>
                         </Col>
                     </Row>
-
                 </div>
             )
         }
